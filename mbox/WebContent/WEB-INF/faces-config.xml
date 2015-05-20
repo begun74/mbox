@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+   version="2.0">
+  <!--  Empty for now. Your entries will go here. But even
+        if you have no entries in faces-config.xml, you are required
+        to have a valid faces-config.xml file with legal 
+        start and end tags.
+        
+        From JSF 2.0 tutorial at http://www.coreservlets.com/JSF-Tutorial/jsf2/ -->
+        
+    <application>
+    	<resource-bundle>
+			<base-name>slang</base-name>
+			<var>msg</var>
+		</resource-bundle>
+		
+		<variable-resolver>
+				org.springframework.web.jsf.DelegatingVariableResolver
+		</variable-resolver>
+
+    </application>
+    
+    <lifecycle>
+		<phase-listener>bvv.web.AuthorizationListener</phase-listener>
+	</lifecycle>
+	
+    
+    <lifecycle>
+		<phase-listener>bvv.web.MailboxLogListener</phase-listener>
+	</lifecycle>
+     
+    <navigation-rule>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<if>#{errorBean.error}</if>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+    <navigation-rule>
+      
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>loginPage</from-outcome>
+            <to-view-id>/login2.xhtml</to-view-id>
+        </navigation-case>
+        
+               
+		<navigation-case>
+		    <from-action>#{navBean.logout}</from-action>
+			<to-view-id>/logout.xhtml</to-view-id>
+		</navigation-case>
+		<!--  
+		<navigation-case>	
+		    <from-action>#{navBean.edit}</from-action>
+		    <from-outcome>edit</from-outcome>
+		    <to-view-id>/editUser.xhtml</to-view-id>
+		</navigation-case>    
+    -->
+    </navigation-rule>
+    
+    
+     
+    
+    
+    <managed-bean>
+        <managed-bean-name>daoBean</managed-bean-name>
+        <managed-bean-class>
+            	bvv.web.hibernate.DaoBean
+        </managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+</faces-config>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  
+  <bean id="daoBean" class="bvv.web.hibernate.DaoBean" scope="request">
+        
+   	<property name="admins">
+       <list>
+           <value>bvv</value>
+           <value>dim</value>
+       </list>
+   	</property>  
+    
+  </bean>   
+  
+  <bean id="sendMailBean" class="bvv.web.SendMailBean" scope="request">
+      	<property name="props">
+    		<value>
+    		    mail.cc.to=bvv@minsk.gov.by
+       			mail.smtp.host=mail.minsk.gov.by
+       			mail.transport.protocol=smtp
+       			mail.smtp.auth=true
+       			mail.debug=false
+       			domain=minsk.gov.by
+    		</value>
+ 		</property>
+      
+  </bean>
+  
+  <bean id="B" class="bvv.util.mailLog.B" scope="singleton">
+      	<property name="parseMailLogFile" ref="PMLF" />
+		<property name="saveToDBmailLog" ref="STDB"/>
+      	<property name="sleep">
+    		<value>60000</value>
+ 		</property>
+		
+  </bean>
+
+  <bean id="PMLF" class="bvv.util.mailLog.ParseMailLogFile" >
+      	<property name="sshUser">
+    		<value>root</value>
+ 		</property>
+      	<property name="sshPass">
+    		<value>7S4s472</value>
+ 		</property>
+      	<property name="sshHost">
+    		<value>mail.minsk.gov.by</value>
+ 		</property>
+ 		
+      	<property name="remoteFile">
+    		<value>/var/log/maillog</value>
+ 		</property>
+      	<property name="localFile">
+    		<value>d:/temp/maillog</value>
+ 		</property>
+		<property name="listPatternImpl">
+			<list>
+				<ref bean="p_c"/>
+				<ref bean="p_q"/>
+				<ref bean="p_q2"/>
+				<ref bean="p_s"/>
+				<ref bean="p_v"/>
+				<ref bean="p_sd"/>
+			</list>
+		</property>
+
+  </bean>
+  <bean id="STDB" class="bvv.util.mailLog.SaveToDBmailLog" />
+
+  <bean id="p_c" class="bvv.util.mailLog.Postfix_cleanup" />
+  <bean id="p_q" class="bvv.util.mailLog.Postfix_qmgr" />
+  <bean id="p_q2" class="bvv.util.mailLog.Postfix_qmgr" >
+  	<property name="pattern">
+  		<value>([A-za-z]{3}[\s]{1,2}[0-9]{1,2} [0-9]{2}:[0-9]{2}:[0-9]{2}).+ (postfix/qmgr\[[0-9]+\]): ([A-Z0-9]{7,11}):{1} (removed)</value>
+  	</property>
+  </bean>
+  <bean id="p_s" class="bvv.util.mailLog.Postfix_smtp" />
+  <bean id="p_sd" class="bvv.util.mailLog.Postfix_smtpD" />
+  <bean id="p_v" class="bvv.util.mailLog.Postfix_virtual" >
+  </bean>
+</beans>
