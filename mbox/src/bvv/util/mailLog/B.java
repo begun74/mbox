@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Scope;
 
 import bvv.web.hibernate.DB_BeanImpl;
 
-//@Scope("singleton") 
+//bvv @Scope("singleton") 
 public final class B implements Runnable{
 	
 	private static B instance;

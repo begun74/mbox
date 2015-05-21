@@ -1,6 +1,10 @@
 /hibernate.cfg.xml
 /maillog.cfg.xml
+<<<<<<< HEAD
 /.gitignore
 /bvv/
 /message.properties
 /slang.properties
+=======
+/bvv/
+>>>>>>> branch 'master' of https://github.com/begun74/mbox.git
