@@ -68,12 +68,13 @@ public class SaveToDBmailLog extends AbstractStrategy implements StrategyImpl {
 				PI = iter.next();
 				PostfixID PID = new PostfixID();
 				PID.setDatahash( ((Postfix)PI).UID() );
+				PID.setN(((Postfix)PI).getN());
 				//System.out.println(((Postfix)PI)+"");
 				session.save(PID);
 
 				//if((PI instanceof Qmgr))
 				session.saveOrUpdate(PI);
-				tx.commit();
+				
 				c++;
 			}
 			saveSkipFile();
@@ -84,11 +85,9 @@ public class SaveToDBmailLog extends AbstractStrategy implements StrategyImpl {
 			tx.rollback();
 			exc.printStackTrace();
 		}
-		finally 
-		{
-			
-		}
+		tx.commit();
 		System.out.println("INFO: SaveToDBmailLog save - "+c);
+		
 	}
 
 }

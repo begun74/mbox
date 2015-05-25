@@ -23,7 +23,7 @@ public class PostfixID implements Serializable{
 	@GeneratedValue	(strategy =GenerationType.AUTO)
 	private long id;
 	private long datahash;
-	
+	private String n;
 	
 	
 	public long getId() {
@@ -37,6 +37,12 @@ public class PostfixID implements Serializable{
 	}
 	public void setDatahash(long datahash) {
 		this.datahash = datahash;
+	}
+	public String getN() {
+		return n;
+	}
+	public void setN(String n) {
+		this.n = n;
 	}
 
 
