@@ -15,7 +15,7 @@ import bvv.web.hibernate.DaoBean;
 import bvv.web.hibernate.MailboxLog;
 import bvv.web.hibernate.Users;
 
-@ManagedBean(name = "navBean", eager = true)
+@ManagedBean(name = "navBean2", eager = true)
 //Only RequestScope т.к. есть @ManagedProperty(value="#{param.n}")
 
 public class NavBean implements Serializable {
@@ -27,24 +27,6 @@ private String n;
 
 private MailboxLog mailbox = new MailboxLog();
 	
-/*	
-	public String edit () {
-		
-		
-		 if(getN() != null){
-			 
-		
-			 ApplicationContext ctx = FacesContextUtils.getRequiredWebApplicationContext(FacesContext.getCurrentInstance());
-				DaoBean DB = (DaoBean) ctx.getBean("daoBean",DaoBean.class);
-				setMailbox((MailBox)DB.getUserByN(n));
-			 return "editUser?faces-redirect=true";
-		 }
-		 else {
-			 return null;
-		 }
-	}
-
-*/
 
 	public String getN() {
 		return n;

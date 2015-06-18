@@ -1,5 +1,6 @@
 package bvv.util.mailLog;
 
+import java.beans.ConstructorProperties;
 import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
@@ -22,21 +23,23 @@ public final class B implements Runnable{
 	Thread thread = null;
 	
 	
-	
-	protected B() {
-
-		System.out.println("B - " + new Date(name));
-		
+	@ConstructorProperties({"isWork"})
+	protected B(boolean isWork) {
+		this.isWork = isWork;
+		if(isWork)
+			System.out.println("B - " + new Date(name));
+		else
+			System.out.println("B - is not RUNNING !" );
 	}	
 
-	
+/*	
 	public static final B getInstance()
     {
-        if (instance == null)  instance = new B();
+        if (instance == null)  instance = new B(isWork);
  
         return instance;
     }
-
+*/
     
 	public DB_BeanImpl getDb_BeanImpl() {
 		return db_BeanImpl;

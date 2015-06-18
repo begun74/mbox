@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head><title>JSF 2: Page Templating</title>
+<h:head><title>Welcome!</title>
 <link href="./css/styles.css" 
       rel="stylesheet" type="text/css"/> 
        <script>
@@ -20,47 +20,40 @@
 </h:head>
 <h:body>
 <h:form id="f">
+
+
 <table align="center" border="0" >
+
 	<th colspan="2" class="title">Welcome!</th>
 	<tr>
 		<td>
 			#{msg.name}
 		</td>
 		<td>	
-			<h:inputText value="#{myBean.name}" id="name" required="true" requiredMessage="#{msg.required}  #{msg.name}"/>
-			
+			<h:inputText value="#{loginBean.name}" id="name" required="true" requiredMessage="#{msg.required}  #{msg.name}"/>
 		</td>
-		<td>
-			<h:message dir="RTL" errorStyle="color:red; display:block" for="name" id="nameError"/>
-		</td>
-	</tr>
-	<tr>
 	</tr>
 	<tr>
 		<td>
 			#{msg.pass}
 		</td>
 		<td>
-			<h:inputSecret value="#{myBean.pass}" id="pass" />
+			<h:inputSecret value="#{loginBean.pass}" id="pass" required="true" requiredMessage="#{msg.required}  #{msg.pass}"/>
 		</td>
-		
-
 	</tr>
 	<tr>
 		<td align="center" colspan="2">
-			<h:commandButton value="OK" action="#{myBean.login}" onclick="return myFunction('f:pass','#{msg.pass} #{msg.required}')"/>
+			<h:commandButton value="OK" action="#{loginBean.login}" />
 		</td>
 	</tr>
-		<tr>
-		<td align="center" colspan="2">
-			<div style="display: block; position:relative; left:1px; top:1px;
-				 font-family:Verdana; font-size:10pt;padding:0px">
-			<h:outputText value="#{navBean.message}" id="ajaxMessage1" />
-			</div>
-		</td>	
-		</tr>
+	<tr>
+		<td colspan="2">
+					<h:messages id="warn"  align="center" styleClass="error"
+							style="color:red;margin:8px;align:center; position:absolute;"/>
+		</td>
+	</tr>
 	
 </table>
 </h:form>
-<ui:include src="/WEB-INF/snippets/training-course-ad.xhtml"/>
+<ui:include src="./snippets/training-course-ad.xhtml"/>
 </h:body></html>

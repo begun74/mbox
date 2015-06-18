@@ -31,6 +31,9 @@
   </bean>
   
   <bean id="B" class="bvv.util.mailLog.B" scope="singleton">
+  		<constructor-arg type="boolean">
+  		 		<value>false</value>
+  		 </constructor-arg>
       	<property name="parseMailLogFile" ref="PMLF" />
 		<property name="saveToDBmailLog" ref="STDB"/>
       	<property name="sleep">
