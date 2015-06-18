@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<title>
+  <ui:insert name="title">Default Title</ui:insert>
+</title>
+</h:head>
+<h:body>
+<h:form id="f">
+<table border="0" width="95%">
+	<tr>
+		<td colspan="2" width="95%" height="10%">
+			<h1 class="title">
+  				<!-- ui:insert name="title">Default Title</ui:insert -->
+			</h1>
+		</td>
+		<td><h:commandLink value="#{navBean.user}" action="#{navBean.logout}" title="Выйти"/></td>
+		
+	</tr>
+	
+	<tr>
+		
+			<td width="15%" valign="top">
+				<table border="0" width="100%" >
+					<tbody>
+					<tr><td><a href="1.jsf"><ui:insert name="menuItem0">Default menu</ui:insert></a></td></tr>
+					<tr><td><a href="2.jsf"><ui:insert name="menuItem1">Default menu</ui:insert></a></td></tr>
+					<tr><td><ui:insert name="menuItem2">Default menu</ui:insert></td></tr>
+					<tr><td><ui:insert name="menuExit"><h:commandLink value="Exit" action="#{navBean.logout}" title="Выйти"/></ui:insert></td></tr>
+					<tr><td><div style="width:100%; height:300px"></div></td></tr>
+					</tbody>
+				</table>
+			</td>
+		
+			<td>
+				<ui:insert name="content">Default content</ui:insert>
+			</td>
+		
+
+	</tr>
+	
+</table>
+
+</h:form>
+</h:body>
+</html>
